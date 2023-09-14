@@ -1,0 +1,42 @@
+CREATE TABLE customer (
+	Customer_ID VARCHAR(50) PRIMARY KEY NOT NULL,
+	Customer_Name VARCHAR(100) NOT NULL,
+	Customer_Age INT NOT NULL,
+	Customer_Gender VARCHAR(50) NOT NULL,
+	Customer_Adress VARCHAR(100) NOT NULL,
+	Phone_Number VARCHAR(50) NOT NULL,
+	Email_Addres VARCHAR(50) NOT NULL);
+
+CREATE TABLE product (
+	Product_ID VARCHAR(50) PRIMARY KEY NOT NULL,
+	Product_Name VARCHAR(50) NOT NULL,
+	Product_Category VARCHAR(50) NOT NULL,
+	Product_Unit_Price INT NOT NULL);
+
+CREATE TABLE store (
+	Store_ID VARCHAR(50) PRIMARY KEY NOT NULL,
+	Store_Name VARCHAR(50) NOT NULL,
+	Store_Adress VARCHAR(100) NOT NULL,
+	Phone_Number VARCHAR(50) NOT NULL,
+	City VARCHAR(50) NOT NULL);
+
+CREATE TABLE salesman (
+	Salesman_ID VARCHAR(50) PRIMARY KEY NOT NULL,
+	Salesman_Name VARCHAR(50) NOT NULL,
+	Phone_Number VARCHAR(50) NOT NULL,
+	Email_Adress VARCHAR(50) NOT NULL);
+
+CREATE TABLE status_order (
+	Status_ID VARCHAR(50) PRIMARY KEY NOT NULL,
+	Status_Order VARCHAR(50) NOT NULL,
+	Status_Desc VARCHAR(50) NOT NULL);
+
+CREATE TABLE sales (
+	Order_ID VARCHAR(50) PRIMARY KEY NOT NULL,
+	Order_Date DATE NOT NULL,
+	Customer_ID VARCHAR(50) NOT NULL FOREIGN KEY(Customer_ID) REFERENCES customer(Customer_ID),
+	Product_ID VARCHAR(50) NOT NULL FOREIGN KEY(Product_ID) REFERENCES product(Product_ID),
+	Store_ID VARCHAR(50) NOT NULL FOREIGN KEY(Store_ID) REFERENCES store(Store_ID),
+	Salesman_ID VARCHAR(50) NOT NULL FOREIGN KEY(Salesman_ID) REFERENCES salesman(Salesman_ID),
+	Status_ID VARCHAR(50) NOT NULL FOREIGN KEY(Status_ID) REFERENCES status_order(Status_ID),
+	Quantity INT NOT NULL);
